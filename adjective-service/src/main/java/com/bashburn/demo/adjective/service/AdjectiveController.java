@@ -10,16 +10,24 @@ import org.springframework.web.socket.*;
 import java.io.IOException;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
 public class AdjectiveController {
   private final AdjectiveServiceWebSocketHandler handler = new AdjectiveServiceWebSocketHandler();
   private final AdjectiveSource source = new AdjectiveSource();
+  private final AtomicBoolean failswitch = new AtomicBoolean(true);
 
   @RequestMapping("/api/adjective")
   public ResponseEntity<String> getAdjective() {
-    String bothAdjectives = String.format("%s %s", source.firstAdjective(), source.secondAdjective());
-    return new ResponseEntity<>(bothAdjectives, HttpStatus.OK);
+    if(failswitch.get()) {
+      String bothAdjectives = String.format("%s %s", source.firstAdjective(), source.secondAdjective());
+      failswitch.set(false);
+      return new ResponseEntity<>(bothAdjectives, HttpStatus.OK);
+    } else {
+      failswitch.set(true);
+      return new ResponseEntity<>("Adjective Service Down", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Bean
