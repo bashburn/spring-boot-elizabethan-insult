@@ -8,7 +8,8 @@
   <artifactId>spring-boot-insult-application</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>adjectiveservice</module>
+    <module>adjective-service</module>
+    <module>insult-service</module>
   </modules>
   <packaging>pom</packaging>
 
