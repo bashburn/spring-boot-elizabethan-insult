@@ -9,10 +9,9 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>adjective-service</artifactId>
+  <artifactId>adjective-two-service</artifactId>
 
-  <name>RHOAR Shootout - Spring Boot - Adjective Service</name>
-
+  <name>RHOAR Shootout - Spring Boot - Adjective Two Service</name>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

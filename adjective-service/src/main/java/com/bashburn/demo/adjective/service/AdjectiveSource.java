@@ -1,10 +1,10 @@
 package com.bashburn.demo.adjective.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-import java.util.logging.Level;
+import com.bashburn.demo.util.FileLoader;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 class AdjectiveSource {
@@ -25,21 +25,8 @@ class AdjectiveSource {
     adjectiveOneList = new ArrayList<>();
     adjectiveTwoList = new ArrayList<>();
     random = new Random(this.randomSeed);
-    adjectiveOneList.addAll(loadAdjectiveFile(firstAdjectiveFile));
-    adjectiveTwoList.addAll(loadAdjectiveFile(secondAdjectiveFile));
-  }
-
-  private Collection<? extends String> loadAdjectiveFile(String filename) {
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(filename)))) {
-      ArrayList<String> adjectiveList = new ArrayList<>();
-      while (reader.ready()) {
-        adjectiveList.add(reader.readLine().trim());
-      }
-      return adjectiveList;
-    } catch(IOException e) {
-      logger.log(Level.SEVERE, "Error loading adjectives", e);
-    }
-    return Collections.emptyList();
+    adjectiveOneList.addAll(FileLoader.loadFile(firstAdjectiveFile));
+    adjectiveTwoList.addAll(FileLoader.loadFile(secondAdjectiveFile));
   }
 
   private String randomString(List<String> stringList) {

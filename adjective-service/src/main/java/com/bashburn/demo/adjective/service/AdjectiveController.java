@@ -16,16 +16,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class AdjectiveController {
   private final AdjectiveServiceWebSocketHandler handler = new AdjectiveServiceWebSocketHandler();
   private final AdjectiveSource source = new AdjectiveSource();
-  private final AtomicBoolean failswitch = new AtomicBoolean(true);
+  private final AtomicBoolean failSwitch = new AtomicBoolean(true);
 
   @RequestMapping("/api/adjective")
   public ResponseEntity<String> getAdjective() {
-    if(failswitch.get()) {
+    if(failSwitch.get()) {
       String bothAdjectives = String.format("%s %s", source.firstAdjective(), source.secondAdjective());
-      failswitch.set(false);
+      failSwitch.set(false);
       return new ResponseEntity<>(bothAdjectives, HttpStatus.OK);
     } else {
-      failswitch.set(true);
+      failSwitch.set(true);
       return new ResponseEntity<>("Adjective Service Down", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
