@@ -17,6 +17,7 @@
     <module>insult-service</module>
     <module>adjective-two-service</module>
     <module>utilities</module>
+    <module>noun-service</module>
   </modules>
   <packaging>pom</packaging>
 
