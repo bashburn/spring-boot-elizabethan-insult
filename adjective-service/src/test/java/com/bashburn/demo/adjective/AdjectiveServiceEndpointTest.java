@@ -13,22 +13,29 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AdjectiveServiceEndpointTest {
-    @Value("${local.server.port}")
-    private int port;
+  @Value("${local.server.port}")
+  private int port;
 
-    @Before
-    public void setup() {
-        RestAssured.baseURI = String.format("http://localhost:%s/api", port);
-    }
+  @Before
+  public void setup() {
+    RestAssured.baseURI = String.format("http://localhost:%s/api", port);
+  }
 
-    @Test
-    public void testGetAdjective() {
-        RestAssured
-                .when()
-                    .get("adjective")
-                .then()
-                    .assertThat()
-                        .statusCode(200)
-                        .body(notNullValue());
-    }
+  @Test
+  public void testGetAdjective() {
+    RestAssured
+        .when()
+          .get("adjective")
+        .then()
+          .assertThat()
+            .statusCode(200)
+            .body(notNullValue());
+    RestAssured
+        .when()
+          .get("adjective")
+        .then()
+          .assertThat()
+            .statusCode(500)
+            .body(notNullValue());
+  }
 }
