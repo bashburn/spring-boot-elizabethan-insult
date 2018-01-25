@@ -4,11 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ElizabethanNounController {
+public class ElizabethanInsultController {
   private final AdjectiveService adjectiveService;
   private final ElizabethanNounSource nounSource;
 
-  public ElizabethanNounController(final AdjectiveService adjectiveService) {
+  public ElizabethanInsultController(final AdjectiveService adjectiveService) {
     this.adjectiveService = adjectiveService;
     this.nounSource = new ElizabethanNounSource();
   }

@@ -14,11 +14,11 @@ public class FileLoader {
 
   public static List<String> loadFile(String filename) {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(filename)))) {
-      ArrayList<String> adjectiveList = new ArrayList<>();
+      ArrayList<String> wordList = new ArrayList<>();
       while (reader.ready()) {
-        adjectiveList.add(reader.readLine().trim());
+        wordList.add(reader.readLine().trim());
       }
-      return adjectiveList;
+      return wordList;
     } catch(IOException e) {
       logger.log(Level.SEVERE, "Error loading adjectives", e);
     }
