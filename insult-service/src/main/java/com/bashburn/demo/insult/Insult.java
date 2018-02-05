@@ -2,13 +2,23 @@ package com.bashburn.demo.insult;
 
 public class Insult {
   private String adjective;
+  private String adjectiveTwo;
   private String noun;
   private String combined;
 
-  public Insult(String adjective, String noun) {
+  public Insult(String adjective, String adjectiveTwo, String noun) {
     this.adjective = adjective;
+    this.adjectiveTwo = adjectiveTwo;
     this.noun = noun;
-    this.combined = adjective + " " + noun;
+    this.combined = adjective + ", " + adjectiveTwo + " " + noun;
+  }
+
+  public String getAdjectiveTwo() {
+    return adjectiveTwo;
+  }
+
+  public void setAdjectiveTwo(String adjectiveTwo) {
+    this.adjectiveTwo = adjectiveTwo;
   }
 
   public String getAdjective() {

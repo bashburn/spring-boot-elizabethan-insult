@@ -7,21 +7,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class AdjectiveService {
-  private static final HystrixCommandKey KEY = HystrixCommandKey.Factory.asKey("AdjectiveService");
-  private final String adjectiveHost = System.getProperty("adjective.host", "http://adjective-service:8080");
+public class NounService {
+  private static final HystrixCommandKey KEY = HystrixCommandKey.Factory.asKey("NounService");
+  private final String nounHost = System.getProperty("noun.host", "http://noun-service:8080");
   private final RestTemplate restTemplate = new RestTemplate();
 
-  @HystrixCommand(commandKey = "AdjectiveService",
-      fallbackMethod = "getFallbackAdjective",
+  @HystrixCommand(commandKey = "NounService",
+      fallbackMethod = "getFallbackNoun",
       commandProperties = {
           @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "100")
       })
-  public String getAdjective() {
-    return restTemplate.getForObject(adjectiveHost + "/api/adjective", String.class);
+  public String getNoun() {
+    return restTemplate.getForObject(nounHost + "/api/noun", String.class);
   }
 
-  private String getFallbackAdjective() {
-    return "unconnected";
+  private String getFallbackNoun() {
+    return "dimwit";
   }
 }
